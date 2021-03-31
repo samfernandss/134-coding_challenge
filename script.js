@@ -10,22 +10,20 @@ const poll = {
         const answer = Number(prompt(message)) - 1;
         if (answer >= 0 && answer < 4) {
             this.answers[answer]++;
-            console.log(this.answers);
         }
         else {
             alert('Resposta inválida');
         }
-        displayResults.call(poll, this.answers);
+        displayResults.call(poll, 'string');
     }
 }
 
 function displayResults(type) {
-    console.log(typeof(type));
     if (type === 'array') {
-        console.log(poll.answers);
+        console.log(this.answers);
     }
-    else if (typeof (type) === Number){
-        console.log(`Poll results are ${poll.answers}`);
+    else if (type === 'string'){
+        console.log(`Poll results are ${this.answers}`);
     }
 }
 
