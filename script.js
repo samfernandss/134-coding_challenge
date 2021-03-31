@@ -6,7 +6,7 @@ const poll = {
     // This generates [0, 0, 0, 0]. More in the next section!
     answers: new Array(4).fill(0),
     registerNewAnswer() {
-        const message = `${this.question}\n ${this.options.join('\n')}`;
+        const message = `${this.question}\n ${this.options.join('\n')}\n(Write option number)`;
         const answer = Number(prompt(message)) - 1;
         if (answer >= 0 && answer < 4) {
             this.answers[answer]++;
@@ -14,17 +14,21 @@ const poll = {
         else {
             alert('Resposta inválida');
         }
+        displayResults.call(poll);
         displayResults.call(poll, 'string');
     }
 }
 
-function displayResults(type) {
+function displayResults(type = 'array') {
     if (type === 'array') {
         console.log(this.answers);
     }
     else if (type === 'string'){
-        console.log(`Poll results are ${this.answers}`);
+        console.log(`Poll results are ${this.answers.join(', ')}`);
     }
 }
+const teste = [1,2,3];
+
+displayResults.call(poll);
 
 document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
